@@ -1,0 +1,27 @@
+Realizzare una chat utilizzando le socket, server in c++ e client in java.
+Parte client:
+ho creato due text area una per i messaggi ricevuti una per i messaggi inviati e una text field dove inserire il testo da inviare.
+faccio inserire dall'utente l'indirizzo ip e la porta del server, questi dati mi serviranno per creare la socket e quindi utilizzare la chat
+inoltre faccio prendere il input il nome dell'utente, questo dato serve soprattutto quando utilizzo il server java che gestisce più utenti e quindi si possono
+distinguere in base al nome. Setto il titolo con il nome dell'utente e il giorno corrente.
+Una volta presi i dati in input se corretti e se il server è funzionante si abilita la text field.
+In caso di chat precedenti verranno prese da due file chat.txt e chat2.txt ogniuna per la sua text area.
+Il client per funzionare dovrà ricevere prima due messaggi dal server una volta connesso
+il primo serve per informare che è connesso e questo sarà la stringa "START_NAME" infatti si potrà inserire il nome solo dopo che il client avrà ricevuto
+questo messaggio. Il secondo messaggio che dovrà ricevere e' "NameAccepted" questo messaggio serve per informare il client che il server ha accettato il nome.
+I messaggi successivi che riceverà il client dovranno essere in un formato spefico:
+dovranno contenere "Message" prima del messaggio se sono i messaggi scritti dal client java
+invece dovranno contenere "MessageS" prima del messaggio se sono i messaggi ricevuti da qualcun'altro.
+Il client in automatico prederà solo la parte successiva a message o messages.
+Gestito l'evento invio da tastiera per inviare un messaggio e aggiungo l'ora di invio prima del messaggio inoltre li inserisco su file.
+
+Il server c++ fa anche da client e ha un interfaccia molto simile a quella del client java
+Il server si avvia in automatico con l'avvio del programma. Utilizza la porta 12345 ed è in grado di comunicare solo con un client alla volta.
+Aspetta che si connetta un client e quando ciò accade abilita i bottoni per disconnettersi e per inviare i messaggi.
+A differenza del client c++ non salva i messaggi su file. Appena si connette invia due messaggi al client java il primo "START_NAME" e il secondo
+"NameAccepted" che servono per far capire al client che è pronto. Il primo messaggio che rivece è il nome del client, ma a differenza dei messaggi
+che riceverà successivamente questo non lo scrive sulla text box. Una label in basso a sinistra dice il nome del computer connesso.
+Una funzione restituisce l'ora e verrà aggiunta prima di tutti i messaggi che verranno inviati, inoltre prima di ogni messaggio aggiunge "MessageS ",
+questo serve a far capire al client java che il messaggio e' stato inviato dal client c++.
+Come nel client java ci sono due text box, quella di sinistra per i messaggi inviati e quella di destra per i messaggi ricevuti.
+(funziona solo su windows).
